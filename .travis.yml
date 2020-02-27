@@ -7,3 +7,19 @@ before_install:
 
 script:
   - docker run okoyeapps/docker-react npm run test -- --coverage --watchAll=false
+
+deploy: 
+    provider: elasticbeanstalk
+    region: "us-east-2"
+    app: "react-docker"
+    env: "DockerReact-env"
+    bucket_name: "elasticbeanstalk-us-east-2-334172679780"
+    bucket_path: "react-docker"
+    on:
+      branch: master
+    access_key_id: "$AWS_ACCESS_KEY"
+    secret_access_key:
+      secure : "$AWS_SECRET_KEY"
+
+
+
